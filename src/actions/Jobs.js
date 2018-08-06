@@ -1,10 +1,9 @@
 const axiosBase = require('axios');
-const axios = axiosBase.create({
-  baseURL: 'http://localhost:8099', // バックエンドB のURL:port を指定する
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  responseType: 'json'  
+export const axios = axiosBase.create({
+    baseURL: 'http://localhost:8099',
+    headers: {
+      'Content-Type': 'application/json'
+    }
 });
 
 // リクエスト開始
@@ -23,10 +22,9 @@ const receiveData = (id,year,month,error,response) => ({
 export const fetchJobs = (id, year, month) => {
     return dispatch => {
         dispatch(startRequest(id,year,month));
-
-        axios.get('/demo/jobs/' + id + '/' + year + '/' + month)
+        return axios.get('/demo/jobs/' + id + '/' + year + '/' + month)
             .then(response => {
-                dispatch(receiveData(id,year,month,null,response));
+                dispatch(receiveData(id,year,month,null,response.data));
             })
             .catch(() => {
                 dispatch(receiveData(id,year,month,true,null));

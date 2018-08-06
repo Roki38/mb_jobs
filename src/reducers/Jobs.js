@@ -1,6 +1,6 @@
 const getKintaiInfo = response => {
     const kintais = [];
-    const jobList = response.data.jobList
+    const jobList = response.jobList
     for (let i = 0; i < jobList.length; i ++){
         const item = jobList[i]
         kintais.push({
@@ -20,7 +20,7 @@ const getKintaiInfo = response => {
 };
 
 const getMonthOverTime = response => {
-    return response.data.monthOverTime;
+    return response.monthOverTime;
 }
 
 // 初期状態
